@@ -14,6 +14,7 @@ class Welcome extends CI_Controller {
 		$catatan = $this->m_welcome->ambil_data_catatan();
 
 		$this->session->login != true ? $this->load->view("template/halaman_login") : $this->load->view('template/template',array("isi" => "template/halaman_utama", "data" => array("hutang_kasbon" => $hutang_kasbon,"pembayaran" => $pembayaran,"catatan" => $catatan)));;
+		//sdfsdf
 	}
 
 }
