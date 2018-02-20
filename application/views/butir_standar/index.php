@@ -6,15 +6,15 @@
           "serverSide": true,
           "ajax":{
             url :"<?php echo base_url("user/ajax") ?>", // json datasource
-            type: "post",  // method  , by default get
-            /*
-            error: function(){  // error handling
-              $(".lookup-error").html("");
-              $("#lookup").append('');
-              $("#lookup").append('<tbody class="employee-grid-error"><tr><th colspan="3">No data found in the server</th></tr></tbody>');
-              $("#lookup_processing").css("display","none");
-            }
-            */
+            type: "post" // method  , by default get
+            
+            // error: function(){  // error handling
+            //   $(".lookup-error").html("");
+            //   $("#lookup").append('');
+            //   $("#lookup").append('<tbody class="employee-grid-error"><tr><th colspan="3">No data found in the server</th></tr></tbody>');
+            //   $("#lookup_processing").css("display","none");
+            // }
+            
             
           },
           "columnDefs": [ {
@@ -34,7 +34,7 @@
     <div class="box-body">
 
     <div class="form-group">
-      <a href='<?php echo base_url("user/tambah"); ?>'><button class="btn btn-success">+ Tambah User</button></a>
+      <a href='<?php echo base_url("user/tambah"); ?>'><button class="btn btn-success">+ Tambah Data</button></a>
     </div>
 
     <table id="lookup" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
@@ -49,14 +49,20 @@
 
         </tr>
       </thead>
+      <?php foreach ($butir as $b): ?>
       	<tr>
-      		<td>1</td>
-      		<td>2</td>
-      		<td>3</td>
-      		<td>4</td>
-      		<td>5</td>
-      		<td>5</td>
+      		<td><?php echo $b->id_Butir; ?></td>
+      		<td><?php echo $b->nomor_butir; ?></td>
+      		<td><?php echo $b->butir_pertanyaan; ?></td>
+      		<td><?php echo $b->id_versi; ?></td>
+      		<td><?php echo $b->id_standar; ?></td>
+      		<td>
+              <a href='<?php echo base_url("welcome/tambah_butir"); ?>' class="btn btn-success"><i class="fa fa-plus"></i></a>
+              <a href='<?php echo base_url("welcome/ubah_butir/").$b->id_Butir; ?>' class="btn btn-info"><i class="fa fa-pencil"></i></a>
+              <a href='<?php echo base_url("welcome/delete_butir/").$b->id_Butir; ?>' class="btn btn-danger"><i class="fa fa-trash"></i></a>
+          </td>
       	</tr>
+      <?php endforeach; ?>
       <tbody>
       </tbody>
       

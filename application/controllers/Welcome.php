@@ -9,8 +9,8 @@ class Welcome extends CI_Controller {
 	}
 
 	function index() {
-		//echo "kosong";
-		$this->load->view("template/template", array("isi"=>"butir_standar/index"));
+		$data = $this->M_butir_standar->ambil_data_butir();
+		$this->load->view("template/template", array("isi"=>"butir_standar/index", "data"=> array("butir" => $data )));
 	}
 
 	function tambah_butir(){
@@ -36,6 +36,11 @@ class Welcome extends CI_Controller {
 		$this->M_butir_standar->ubah_butir();
 		redirect(base_url('Welcome'));	
 	}
+
+	public function delete_butir($id){
+        $this->M_butir_standar->delete_butir($id);
+        redirect("Welcome");
+    }
 
 	// function hapus_butir($id=null){
 	// 	$this->load->view('template/template',array("isi" => "butir_standar/form_hapus_butir" => array("id" => $id)));

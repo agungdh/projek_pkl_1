@@ -4,14 +4,11 @@ class M_butir_standar extends CI_Model{
 		parent::__construct();		
 	}
 
-	function ambil_data_user(){
-		$sql = "SELECT id, nama, username
-		FROM user
-		WHERE level = ?";
-		$query = $this->db->query($sql, array(2));
-		$row = $query->result();
-
-		return $row;
+	function ambil_data_butir(){
+		$row = "SELECT * FROM Butir_Standar";
+		$sql = $this->db->query($row);
+		$query = $sql->result();
+		return $query;
 	}
 
 	function tambah_butir(){
@@ -36,19 +33,9 @@ class M_butir_standar extends CI_Model{
 		$query = $this->db->query($sql, array($nomor, $pertanyaan, $versi, $standar, $id));
 	}
 
-	function hapus_user(){
-		$id = $this->input->post('id');
-
-		$sql = "call sp_hapus_user(?);";
-		$query = $this->db->query($sql, array($id));
-	}
-
-	function ganti_password(){
-		$id = $this->input->post('id');
-		$password = $this->input->post('password');
-
-		$sql = "call sp_ganti_password(?,?);";
-		$query = $this->db->query($sql, array($password, $id));
+	function delete_butir($id){
+		$data = "DELETE FROM `Butir_Standar` WHERE id_Butir = ?";
+		$query = $this->db->query($data, array($id));
 	}
 
 }
