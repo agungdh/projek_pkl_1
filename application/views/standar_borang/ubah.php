@@ -24,7 +24,7 @@
 
     <div class="form-group">
       <label>ID Versi</label>
-      <select class="form-control" name="id_versi">
+      <select class="form-control select2" name="id_versi">
         <?php
         foreach ($data['versi_borang'] as $item) {
           if ($item->id_versi == $data['data_standar_borang']->id_versi) {
@@ -49,3 +49,8 @@
     </div>
   </form>
 </div><!-- /.box -->
+<script type="text/javascript">
+$(function () {
+  $('.select2').select2()
+});
+</script>

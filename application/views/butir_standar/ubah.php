@@ -24,7 +24,7 @@
 
     <div class="form-group">
       <label>ID Versi</label>
-      <select class="form-control" name="id_versi">
+      <select class="form-control select2" name="id_versi">
         <?php
         foreach ($data['versi_borang'] as $item) {
           if ($item->id_versi == $data['data_butir_standar']->id_versi) {
@@ -43,7 +43,7 @@
     
     <div class="form-group">
       <label>ID Versi</label>
-      <select class="form-control" name="id_standar">
+      <select class="form-control select2" name="id_standar">
         <?php
         foreach ($data['standar_borang'] as $item) {
           if ($item->id_standar == $data['data_butir_standar']->id_standar) {
@@ -68,3 +68,8 @@
     </div>
   </form>
 </div><!-- /.box -->
+<script type="text/javascript">
+$(function () {
+  $('.select2').select2()
+});
+</script>

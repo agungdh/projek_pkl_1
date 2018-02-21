@@ -24,7 +24,7 @@
 
     <div class="form-group">
       <label>ID Versi</label>
-      <select class="form-control" name="id_versi">
+      <select class="form-control select2" name="id_versi">
         <?php
         foreach ($data['versi_borang'] as $item) {
           ?>
@@ -37,7 +37,7 @@
     
     <div class="form-group">
       <label>ID Versi</label>
-      <select class="form-control" name="id_standar">
+      <select class="form-control select2" name="id_standar">
         <?php
         foreach ($data['standar_borang'] as $item) {
           ?>
@@ -56,3 +56,9 @@
     </div>
   </form>
 </div><!-- /.box -->
+
+<script type="text/javascript">
+$(function () {
+  $('.select2').select2()
+});
+</script>
