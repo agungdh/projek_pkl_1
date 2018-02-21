@@ -1,69 +1,50 @@
 <?php
-class M_materi extends CI_Model{	
+class M_versi_borang extends CI_Model{	
 	function __construct(){
 		parent::__construct();		
 	}
 
-	function ambil_tabel_banksoal($id_mapel){
+	function ambil_versi_borang(){
 		$sql = "SELECT *
-		FROM banksoal
-		WHERE id_mapel = ?";
-		$query = $this->db->query($sql, array($id_mapel));
+		FROM Versi_Borang";
+		$query = $this->db->query($sql, array());
 		$row = $query->result();
 
 		return $row;
 	}
-
-	function ambil_tabel_materi($id_guru){
+	
+	function ambil_versi_borang_id($id_versi_borang){
 		$sql = "SELECT *
-		FROM v_tabel_materi
-		WHERE id_guru = ?
-		ORDER BY id_mapel DESC";
-		$query = $this->db->query($sql, array($id_guru));
-		$row = $query->result();
-
-		return $row;
-	}
-
-	function ambil_id_guru($id_user){
-		$sql = "SELECT f_ambil_id_guru_dari_id_user(?) hasil";
-		$query = $this->db->query($sql, array($id_user));
-		$row = $query->row();
-
-		return $row->hasil;
-	}
-
-	function ambil_data_materi($id){
-		$sql = "SELECT *
-		FROM v_tabel_materi
-		WHERE id_mapel = ?";
-		$query = $this->db->query($sql, array($id));
+		FROM Versi_Borang
+		where id_versi = ?";
+		$query = $this->db->query($sql, array($id_versi_borang));
 		$row = $query->row();
 
 		return $row;
 	}
-
-	function tambah_materi($id_guru, $semester, $mapel){
-		$sql = "call sp_tambah_mapel(?,?,?);";
-		$query = $this->db->query($sql, array($id_guru, $semester, $mapel));
-		$row = $query->row();
-
-		return $row->last_id;
+	
+	function tambah_versi_borang($id_versi, $nama_borang, $nama_versi, $tahun_terbit_borang){
+		$sql = "INSERT INTO Versi_Borang
+				SET id_versi = ?,
+				nama_borang = ?,
+				nama_versi = ?,
+				tahun_terbit_borang = ?";
+		$query = $this->db->query($sql, array($id_versi, $nama_borang, $nama_versi, $tahun_terbit_borang));
 	}
-
-	function ubah_materi($nama, $id){
-		$sql = "call sp_ubah_materi(?,?);";
-		$query = $this->db->query($sql, array($nama, $id));
+	
+	function ubah_versi_borang($nama_borang, $nama_versi, $tahun_terbit_borang, $id_versi){
+		$sql = "UPDATE Versi_Borang
+				SET nama_borang = ?,
+				nama_versi = ?,
+				tahun_terbit_borang = ?
+				WHERE id_versi = ?";
+		$query = $this->db->query($sql, array($nama_borang, $nama_versi, $tahun_terbit_borang, $id_versi));
 	}
-
-	function hapus_materi($id){
-		$sql = "call sp_hapus_materi(?);";
-		$query = $this->db->query($sql, array($id));
-	}
-
-	function hapus_soal($id_banksoal) {
-		$sql = "CALL sp_hapus_banksoal(?)";
-		$this->db->query($sql, array($id_banksoal));
+	
+	function hapus_versi_borang($id_versi){
+		$sql = "DELETE FROM Versi_Borang
+				WHERE id_versi = ?";
+		$query = $this->db->query($sql, array($id_versi));
 	}
 
 }

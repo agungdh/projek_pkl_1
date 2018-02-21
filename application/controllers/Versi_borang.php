@@ -1,113 +1,60 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Angkatan extends CI_Controller {
+class Versi_borang extends CI_Controller {
 	function __construct(){
 		parent::__construct();
-		$this->load->model('m_angkatan');	
+		$this->load->model('m_versi_borang');	
 	}
 
 	function index() {
-		$data_angkatan = $this->m_angkatan->ambil_tabel_angkatan();
+		$data['isi'] = "versi_borang/index";
+		$data['data']['versi_borang'] = $this->m_versi_borang->ambil_versi_borang();
 
-		$this->load->view("template/template", array("isi"=>"angkatan/index", "data"=>$data_angkatan));
+		$this->load->view("template/template", $data);
 	}
 
-	function tambah(){
-		$this->load->view('template/template',array("isi" => "angkatan/tambah"));
+	function tambah() {
+		$data['isi'] = "versi_borang/tambah";
+
+		$this->load->view("template/template", $data);
 	}
 
-	function aksi_tambah(){
-		$angkatan = $this->input->post('angkatan');
-		
-		$this->m_angkatan->tambah_angkatan($angkatan);
-		
-		redirect(base_url('angkatan'));	
+	function aksi_tambah() {
+		$this->m_versi_borang->tambah_versi_borang(
+			$this->input->post('id_versi'),
+			$this->input->post('nama_borang'),
+			$this->input->post('nama_versi'),
+			$this->input->post('tahun_terbit_borang')
+		);
+
+		redirect(base_url('versi_borang'));
 	}
 
-	function impor(){
-		$this->load->view('template/template',array("isi" => "angkatan/impor"));
+	function ubah($id_versi) {
+		$data['isi'] = "versi_borang/ubah";
+		$data['data']['data'] = $this->m_versi_borang->ambil_versi_borang_id($id_versi);
+
+		$this->load->view("template/template", $data);
 	}
 
-	function aksi_impor(){
-		$this->load->library('excelreader/Excel_reader');
-		if ($_FILES['excel']['size']==0) {
-			redirect(base_url('angkatan/impor?file_kosong=1'));	
-		}
+	function aksi_ubah() {
+		$this->m_versi_borang->ubah_versi_borang(
+			$this->input->post('nama_borang'),
+			$this->input->post('nama_versi'),
+			$this->input->post('tahun_terbit_borang'),
+			$this->input->post('id_versi')
+		);
 
-		$id_admin = $this->m_angkatan->ambil_id_admin($this->session->id);
-
-			$ekstensi_diperbolehkan	= array('xls');
-			$nama = $_FILES['excel']['name'];
-			$x = explode('.', $nama);
-			$ekstensi = strtolower(end($x));
-			//awal
-			//tengah
-			//akhir
-			//end() -> akhir
-			$ukuran	= $_FILES['excel']['size'];
-			$file_tmp = $_FILES['excel']['tmp_name'];	
- 
-			if(in_array($ekstensi, $ekstensi_diperbolehkan) === true){
-				if($ukuran < 5242880){			
-					if(move_uploaded_file($file_tmp, 'berkas/temp/'.$id_admin.'.xls')){
-						// echo 'FILE BERHASIL DI UPLOAD';
-					}else{
-						// echo 'GAGAL MENGUPLOAD FILE';
-						redirect(base_url('angkatan/impor?upload_gagal=1'));
-					}
-				}else{
-					redirect(base_url('angkatan/impor?file_kebesaran=1'));	
-					// echo 'UKURAN FILE TERLALU BESAR';
-				}
-			}else{
-				redirect(base_url('angkatan/impor?ekstensi_salah=1'));	
-				// echo 'EKSTENSI FILE YANG DI UPLOAD TIDAK DI PERBOLEHKAN';
-			}
-		
-		$this->excel_reader->setOutputEncoding('230787');
-		$this->excel_reader->read('berkas/temp/'.$id_admin.'.xls');
-
-		$data = $this->excel_reader->sheets[0];
-		// echo $data['cells'][3][1]; //['cells'][bawah][samping]
-		// echo "<br>";
-		// echo $data['numRows']; //jumah baris (bawah)
-
-		for ($i=4; $i <= $data['numRows']; $i++) { 
-			// echo $data['cells'][$i][1] . "<br>";
-			$this->m_angkatan->tambah_angkatan($data['cells'][$i][1]);
-		}
-
-		redirect(base_url('angkatan'));	
-
-
+		redirect(base_url('versi_borang'));
 	}
 
-	function ubah($id){
-		$data_angkatan = $this->m_angkatan->ambil_data_angkatan($id);
+	function aksi_hapus($id_versi) {
+		$this->m_versi_borang->hapus_versi_borang(
+			$id_versi
+		);
 
-		$this->load->view('template/template',array("isi" => "angkatan/ubah", "data" => $data_angkatan));
-	}
-
-	function aksi_ubah(){
-		$angkatan = $this->input->post('angkatan');
-		$id = $this->input->post('id');
-		
-		$this->m_angkatan->ubah_angkatan($angkatan, $id);
-		
-		redirect(base_url('angkatan'));	
-	}
-
-	function hapus($id){
-		$data_angkatan = $this->m_angkatan->ambil_data_angkatan($id);
-
-		$this->load->view('template/template',array("isi" => "angkatan/hapus", "data" => $data_angkatan));
-	}
-
-	function aksi_hapus($id){
-		$this->m_angkatan->hapus_angkatan($id);
-		
-		redirect(base_url('angkatan'));	
+		redirect(base_url('versi_borang'));
 	}
 
 }
