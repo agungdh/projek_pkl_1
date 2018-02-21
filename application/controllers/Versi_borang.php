@@ -33,7 +33,7 @@ class Versi_borang extends CI_Controller {
 
 	function ubah($id_versi) {
 		$data['isi'] = "versi_borang/ubah";
-		$data['data']['data'] = $this->m_versi_borang->ambil_versi_borang_id($id_versi);
+		$data['data']['data_versi_borang'] = $this->m_versi_borang->ambil_versi_borang_id($id_versi);
 
 		$this->load->view("template/template", $data);
 	}
