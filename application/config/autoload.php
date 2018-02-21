@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-date_default_timezone_set("Asia/Jakarta");
+
 /*
 | -------------------------------------------------------------------
 | AUTO-LOADER
@@ -89,7 +89,7 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('url');
+$autoload['helper'] = array('url','captcha');
 
 /*
 | -------------------------------------------------------------------

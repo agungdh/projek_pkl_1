@@ -127,24 +127,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <ul class="sidebar-menu">
       
     <?php
+
+    $this->load->view('template/menu_utama'); 
     
-    switch ($this->session->level) {
-      case '1':
-        $this->load->view('template/menu_siswa');
-        break;
-      
-      case '2':
-        $this->load->view('template/menu_guru');
-        break;
-      
-      case '4':
-        $this->load->view('template/menu_admin');
-        break;
-      
-      default:
-        // return;
-        break;
-    }
+    if ($this->session->level == 1 ) {
+      $this->load->view('template/menu_admin'); 
+    } 
 
     ?>
       

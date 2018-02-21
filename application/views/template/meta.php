@@ -8,7 +8,7 @@
   
     <link rel="shortcut icon" href="<?php echo base_url() . "assets/"; ?>logo.jpg" type="image/vnd.microsoft.icon">
 
-    <title>Aplikasi E-Learning SMK Swadhipa 1 Natar</title>
+    <title>Aplikasi Kasbon Online berbasis Web</title>
     <!-- Tell the browser to be responsive to screen width -->
 
     <!-- Bootstrap 3.3.5 -->

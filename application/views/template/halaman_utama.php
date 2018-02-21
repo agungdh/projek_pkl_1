@@ -1,3 +1,52 @@
+<!-- Small boxes (Stat box) -->
+      <div class="row">
+        <div class="col-lg-4 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h3><?php echo $data['hutang_kasbon']; ?></h3>
+
+              <p>Hutang Kasbon</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-social-usd"></i>
+            </div>
+            <a href="<?php echo base_url('kasbon') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-4 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3><?php echo $data['pembayaran']; ?></h3>
+
+              <p>Pembayaran</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-ios-pie"></i>
+            </div>
+            <a href="<?php echo base_url('pembayaran') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-4 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3><?php echo $data['catatan']; ?></h3>
+
+              <p>Catatan Aktif</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-document-text"></i>
+            </div>
+            <a href="<?php echo base_url('catatan') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+      </div>
+      <!-- /.row -->
 
  <div id="myCarousel" class="carousel slide" data-ride="carousel">
     
@@ -12,15 +61,15 @@
     <div class="carousel-inner" role="listbox">
 
       <div class="item active">
-        <img src="<?php echo base_url("assets/gambar/1.jpg"); ?>" alt="Photo1" width="100%">
+        <img src="<?php echo base_url("assets/dist/img/photo1.jpg"); ?>" alt="Photo1" width="100%">
       </div>
 
       <div class="item">
-        <img src="<?php echo base_url("assets/gambar/2.jpg"); ?>" alt="Photo2" width="100%">
+        <img src="<?php echo base_url("assets/dist/img/photo2.jpg"); ?>" alt="Photo2" width="100%">
       </div>
 
       <div class="item">
-        <img src="<?php echo base_url("assets/gambar/3.jpg"); ?>" alt="Photo3" width="100%">
+        <img src="<?php echo base_url("assets/dist/img/photo3.jpg"); ?>" alt="Photo3" width="100%">
       </div>
 
     </div>
